@@ -1,0 +1,10 @@
+{
+    "type": "object",
+    "properties": {
+      "name": { "type": "string" },
+      "document": { "type": "string" },
+      "email": { "type": "string" },
+      "created": { "type": "boolean"}
+    },
+    "required": ["name", "document", "email", "created"]
+  }
