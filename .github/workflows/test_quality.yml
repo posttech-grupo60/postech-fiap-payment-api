@@ -24,6 +24,7 @@ jobs:
       run: |
         npm install
         sudo apt-get update && sudo apt-get install lcov
+        sudo apt-get install jq
 
     - name: Executar testes BDD e gerar relatório de cobertura
       run: npm run test
@@ -36,27 +37,20 @@ jobs:
     - name: Exibir informações de cobertura
       run: cat cobertura.json
 
-    - name: Calcular porcentagem de cobertura
+    - name: Extrair porcentagem de cobertura
       run: |
-        const fs = require('fs');
-
-        // Ler o conteúdo do arquivo cobertura.json
-        const coberturaJson = fs.readFileSync('cobertura.json', 'utf8');
-
-        // Analisar o conteúdo JSON
-        const cobertura = JSON.parse(coberturaJson);
-
-        // Calcular a porcentagem de cobertura
-        let totalLinhas = 0;
-        let linhasCobertas = 0;
-
-        cobertura.forEach(info => {
-          totalLinhas += info.lines.found;
-          linhasCobertas += info.lines.hit;
-        });
-
-        const porcentagemCobertura = (linhasCobertas / totalLinhas) * 100;
-        console.log('Porcentagem de cobertura:', porcentagemCobertura.toFixed(2) + '%')
+        coverage=$(cat cobertura.json | jq '.[].lines.found' | paste -sd+ - | bc)
+        cobertos=$(cat cobertura.json | jq '.[].lines.hit' | paste -sd+ - | bc)
+        percentual=$(echo "scale=2; $cobertos / $coverage * 100" | bc -l)
+        echo "Porcentagem de cobertura: $percentual%"
+        pass_percent="80"
+        if (( $(echo "$percentual >= $pass_percent" | bc -l) )); then
+          echo "Cobertura de teste atingida: $percentual%"
+          exit 0
+        else
+          echo "Erro: A cobertura de teste é inferior a $pass_percent% ($percentual%)"
+          exit 1
+        fi
         
     - name: Coveralls
       uses: coverallsapp/github-action@master
