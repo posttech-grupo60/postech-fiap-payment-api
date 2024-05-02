@@ -31,8 +31,12 @@ jobs:
       with:
         github-token: ${{ secrets.COVERALLS_REPO_TOKEN }}
         flag-name: ${{matrix.os}}-node-${{ matrix.node }}
-        
+
     - name: Verificar cobertura de teste
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.COVERALLS_REPO_TOKEN }}
+        flag-name: ${{matrix.os}}-node-${{ matrix.node }}
       run: |
         coverage=$(cat coverage/lcov.info | npx coveralls --verbose | grep "Statements")
         echo "$coverage"
