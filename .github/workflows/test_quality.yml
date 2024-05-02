@@ -31,8 +31,6 @@ jobs:
         npm install -g nyc
         nyc cucumber-js -p default --format json:test-results.json && nyc report --reporter=lcov --reporter=text
         mv test-results.json coverage/lcov.info
-        npm install -g lcov-result-merger
-        lcov-result-merger 'coverage/**/*.info' 'merged.lcov.info'
 
     - name: Extrair porcentagem de cobertura
       run: |
