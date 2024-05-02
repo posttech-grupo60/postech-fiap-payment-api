@@ -34,7 +34,7 @@ jobs:
 
     - name: Extrair porcentagem de cobertura
       run: |
-        coverage=$(cat merged.lcov.info | lcov --summary | grep 'lines......: ' | awk '{ print $6 }')
+        coverage=$(cat coverage/lcov.info | lcov --summary | grep 'lines......: ' | awk '{ print $6 }')
         echo "Porcentagem de cobertura: $coverage%"
         pass_percent="80"
         if (( $(echo "$coverage >= $pass_percent" | bc -l) )); then
