@@ -51,10 +51,3 @@ jobs:
           echo "Erro: A cobertura de teste é inferior a $pass_percent% ($percentual%)"
           exit 1
         fi
-        
-    - name: Coveralls
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        flag-name: ${{matrix.os}}-node-${{ matrix.node }}
-        parallel: true
