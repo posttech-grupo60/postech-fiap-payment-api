@@ -29,19 +29,20 @@ jobs:
     - name: Coveralls
       uses: coverallsapp/github-action@master
       with:
-        github-token: ${{ secrets.COVERALLS_REPO_TOKEN }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
         flag-name: ${{matrix.os}}-node-${{ matrix.node }}
         parallel: true
-        run: |
-          coverage=$(cat coverage/lcov.info | npx coveralls --verbose | grep "Statements")
-          echo "$coverage"
-          pass_percent="80"
-          percent=$(echo "$coverage" | grep -o -P '(?<=\().*(?=\%)')
-          echo "O percente agora e $percent"
-          if (( $(echo "$percent >= $pass_percent" | bc -l) )); then
-            echo "Cobertura de teste atingida: $percent%"
-            exit 0
-          else
-            echo "Erro: A cobertura de teste é inferior a $pass_percent% ($percent%)"
-            exit 1
-          fi
+
+    - name: Verificar cobertura de teste
+      run: |
+        coverage=$(cat ./coverage/lcov.info | npx coveralls --verbose | grep "Statements")
+        echo "$coverage"
+        pass_percent="80"
+        percent=$(echo "$coverage" | grep -o -P '(?<=\().*(?=\%)')
+        if (( $(echo "$percent >= $pass_percent" | bc -l) )); then
+          echo "Cobertura de teste atingida: $percent%"
+          exit 0
+        else
+          echo "Erro: A cobertura de teste é inferior a $pass_percent% ($percent%)"
+          exit 1
+        fi
