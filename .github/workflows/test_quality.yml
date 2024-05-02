@@ -11,20 +11,19 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
     with:
-        persist-credentials: false
-    - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-    - name: Instalar dependências
-      run: npm install
-    - name: Executar testes BDD e gerar relatório de cobertura
-      run: npm run test
-    - name: Verificar cobertura de teste
+      persist-credentials: false
+      - name: Use Node.js ${{ matrix.node-version }}
+          uses: actions/setup-node@v1
+          with:
+            node-version: ${{ matrix.node-version }}
+      - name: Instalar dependências
+        run: npm install
+      - name: Executar testes BDD e gerar relatório de cobertura
+        run: npm run test
+      - name: Verificar cobertura de teste
       run: |
         coverage=$(cat coverage/lcov.info | npx coveralls --verbose | grep "Statements")
         echo "$coverage"
