@@ -1,0 +1,41 @@
+name: Testes de BDD e Cobertura
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Instalar Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Instalar dependências
+      run: npm install
+
+    - name: Executar testes BDD e gerar relatório de cobertura
+      run: npm run test
+
+    - name: Verificar cobertura de teste
+      run: |
+        coverage=$(cat coverage/lcov.info | npx coveralls --verbose | grep "Statements")
+        echo "$coverage"
+        pass_percent="80"
+        percent=$(echo "$coverage" | grep -o -P '(?<=\().*(?=\%)')
+        if (( $(echo "$percent >= $pass_percent" | bc -l) )); then
+          echo "Cobertura de teste atingida: $percent%"
+          exit 0
+        else
+          echo "Erro: A cobertura de teste é inferior a $pass_percent% ($percent%)"
+          exit 1
+        fi
