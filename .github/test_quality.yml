@@ -3,10 +3,10 @@ name: Testes de BDD e Cobertura
 on:
   push:
     branches:
-      - Teste
+      - main
   pull_request:
     branches:
-      - Teste
+      - main
 
 jobs:
   test:
