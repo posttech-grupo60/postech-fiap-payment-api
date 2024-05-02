@@ -18,16 +18,20 @@ jobs:
     - name: Instalar Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.node-version }}
-        repo-token: ${{ github.token }}
-        repository: ${{ github.repository }}
-        GITHUB_TOKEN: ${{ github.token }}
+        node-version: ${{ matrix.node-version }}  
 
     - name: Instalar dependências
       run: npm install
 
     - name: Executar testes BDD e gerar relatório de cobertura
       run: npm run test
+
+    - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          flag-name: ${{matrix.os}}-node-${{ matrix.node }}
+          parallel: true
 
     - name: Verificar cobertura de teste
       run: |
