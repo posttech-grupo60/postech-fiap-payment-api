@@ -35,7 +35,7 @@ jobs:
         run: |
           coverage=$(cat coverage/lcov.info | npx coveralls --verbose | grep "Statements")
           echo "$coverage"
-          pass_percent="80"
+          pass_percent="1000000000000"
           percent=$(echo "$coverage" | grep -o -P '(?<=\().*(?=\%)')
           if (( $(echo "$percent >= $pass_percent" | bc -l) )); then
             echo "Cobertura de teste atingida: $percent%"
