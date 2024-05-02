@@ -1,0 +1,324 @@
+[
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "processo-de-pagamento;criar-novo-pagamento",
+        "keyword": "Scenario",
+        "line": 2,
+        "name": "Criar novo pagamento",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 3,
+            "name": "Quando tenho um orderId",
+            "match": {
+              "location": "test\\stepDefinitions\\payment_steps.ts:12"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1186999
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 4,
+            "name": "Devo criar um pagamento",
+            "match": {
+              "location": "test\\stepDefinitions\\payment_steps.ts:22"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 639100
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 5,
+            "name": "Precisa existir pagamentos",
+            "match": {
+              "location": "test\\stepDefinitions\\payment_steps.ts:26"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 277999
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "processo-de-pagamento;criar-novo-pagamento",
+        "keyword": "Scenario",
+        "line": 7,
+        "name": "Criar novo pagamento",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 8,
+            "name": "Quando tenho um novo pagamento",
+            "match": {
+              "location": "test\\stepDefinitions\\payment_steps.ts:32"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 142799
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 9,
+            "name": "Devo criar um pagamento na base",
+            "match": {
+              "location": "test\\stepDefinitions\\payment_steps.ts:42"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 96699
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 10,
+            "name": "Quando buscar ele, o pagamento deve estar com o status de pagamento false",
+            "match": {
+              "location": "test\\stepDefinitions\\payment_steps.ts:46"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 250599
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "processo-de-pagamento;atualizar-um-pedido-para-pago",
+        "keyword": "Scenario",
+        "line": 12,
+        "name": "Atualizar um pedido para pago",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 13,
+            "name": "Quando eu adicionar um novo pagamento",
+            "match": {
+              "location": "test\\stepDefinitions\\payment_steps.ts:53"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 138499
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 14,
+            "name": "Devo colocar o pedido como pago",
+            "match": {
+              "location": "test\\stepDefinitions\\payment_steps.ts:63"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 200600
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 15,
+            "name": "Quando buscar ele, ele precisa estar com o status de pagamento true",
+            "match": {
+              "location": "test\\stepDefinitions\\payment_steps.ts:69"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 223199
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "processo-de-pagamento",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Processo de pagamento",
+    "tags": [],
+    "uri": "test\\features\\payment.feature"
+  },
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "processo-de-pagamento-pelo-serviço;criar--um-novo-pagamento",
+        "keyword": "Scenario",
+        "line": 2,
+        "name": "Criar  um novo pagamento",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 3,
+            "name": "Quando tenho uma nova orderId",
+            "match": {
+              "location": "test\\stepDefinitions\\payment_service_step.ts:24"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 207400
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 4,
+            "name": "Devo criar um pagamento com o orderId",
+            "match": {
+              "location": "test\\stepDefinitions\\payment_service_step.ts:30"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 4461299
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 5,
+            "name": "Precisa existir o pagamento como payment false",
+            "match": {
+              "location": "test\\stepDefinitions\\payment_service_step.ts:34"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1077999
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "processo-de-pagamento-pelo-serviço;atualizando-o-pagamento-de-um-pedido",
+        "keyword": "Scenario",
+        "line": 7,
+        "name": "Atualizando o pagamento de um pedido",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 8,
+            "name": "Quando tenho um pagamento",
+            "match": {
+              "location": "test\\stepDefinitions\\payment_service_step.ts:42"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 500299
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 9,
+            "name": "Devo atualizar ele para pago",
+            "match": {
+              "location": "test\\stepDefinitions\\payment_service_step.ts:49"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 766599
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 10,
+            "name": "Entao ele precisa passar uma vez pelo update",
+            "match": {
+              "location": "test\\stepDefinitions\\payment_service_step.ts:53"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 193699
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "processo-de-pagamento-pelo-serviço;listando-o-pagamento",
+        "keyword": "Scenario",
+        "line": 12,
+        "name": "Listando o pagamento",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 13,
+            "name": "Quando tenho um novo requerimento de orderId",
+            "match": {
+              "location": "test\\stepDefinitions\\payment_service_step.ts:57"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 117099
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 14,
+            "name": "Devo salvar os dados na base",
+            "match": {
+              "location": "test\\stepDefinitions\\payment_service_step.ts:63"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 417300
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 15,
+            "name": "Entao eu preciso encontrar esse pagamento",
+            "match": {
+              "location": "test\\stepDefinitions\\payment_service_step.ts:67"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 267300
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "processo-de-pagamento-pelo-serviço",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Processo de pagamento pelo serviço",
+    "tags": [],
+    "uri": "test\\features\\payment_service.feature"
+  }
+]

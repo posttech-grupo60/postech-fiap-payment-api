@@ -1,6 +1,10 @@
 {
   "scripts": {
-    "test": "cucumber-js -p default"
+    "test": "nyc cucumber-js -p default --format json:test-results.json && nyc report --reporter=lcov --reporter=text"
+  },
+  "nyc": {
+    "report-dir": "coverage",
+    "temp-dir": "coverage/.nyc_output"
   },
   "devDependencies": {
     "@cucumber/cucumber": "^10.5.1",
@@ -13,9 +17,11 @@
     "chai": "^5.1.0",
     "coveralls": "^3.1.1",
     "cucumber": "^6.0.7",
+    "cucumber-html-reporter": "^7.1.1",
     "jest": "^29.7.0",
     "mongodb": "^6.5.0",
     "mongodb-memory-server": "^9.2.0",
+    "nyc": "^15.1.0",
     "serverless-offline": "^13.3.3",
     "serverless-plugin-typescript": "^2.1.5",
     "ts-jest": "^29.1.2",
