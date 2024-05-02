@@ -21,7 +21,9 @@ jobs:
         node-version: ${{ matrix.node-version }}  
 
     - name: Instalar dependências
-      run: npm install
+      run: |
+        npm install
+        sudo apt-get update && sudo apt-get install lcov
 
     - name: Executar testes BDD e gerar relatório de cobertura
       run: npm run test
