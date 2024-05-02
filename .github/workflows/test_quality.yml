@@ -15,17 +15,14 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Instalar Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-
+    - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
     - name: Instalar dependências
       run: npm install
-
     - name: Executar testes BDD e gerar relatório de cobertura
       run: npm run test
-
     - name: Verificar cobertura de teste
       run: |
         coverage=$(cat coverage/lcov.info | npx coveralls --verbose | grep "Statements")
