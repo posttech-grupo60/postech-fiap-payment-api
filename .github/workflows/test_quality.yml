@@ -67,7 +67,7 @@ jobs:
       - name: Check coverage
         run: |
           COVERAGE=$(npx istanbul check-coverage --statement 80 --function 80 --lines 80 coverage/coverage-final.json)
-          echo "$COVERAGE"
+          echo "o Coverage  e $COVERAGE"
           if [[ "$COVERAGE" != *"All thresholds met"* ]]; then
             echo "Coverage below threshold. Aborting deploy."
             exit 1
