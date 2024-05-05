@@ -51,25 +51,26 @@ jobs:
           echo "Erro: A cobertura de teste é inferior a $pass_percent% ($percentual%)"
           exit 1
         fi
+
   unit:
     - name: Run tests
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-        
-      - name: Install dependencies
-        run: npm install
-        
-      - name: Run unit tests
-        run: npm test -- --coverage
-      - name: Check coverage
-        run: |
-          COVERAGE=$(npx istanbul check-coverage --statement 80 --function 80 --lines 80 coverage/coverage-final.json)
-          echo "$COVERAGE"
-          if [[ "$COVERAGE" != *"All thresholds met"* ]]; then
-            echo "Coverage below threshold. Aborting deploy."
-            exit 1
-          else
-            echo "Cobertura de teste unitarios atingidas"
-            exit 0
-          fi
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Install dependencies
+      run: npm install
+      
+    - name: Run unit tests
+      run: npm test -- --coverage
+    - name: Check coverage
+      run: |
+        COVERAGE=$(npx istanbul check-coverage --statement 80 --function 80 --lines 80 coverage/coverage-final.json)
+        echo "$COVERAGE"
+        if [[ "$COVERAGE" != *"All thresholds met"* ]]; then
+          echo "Coverage below threshold. Aborting deploy."
+          exit 1
+        else
+          echo "Cobertura de teste unitarios atingidas"
+          exit 0
+        fi
