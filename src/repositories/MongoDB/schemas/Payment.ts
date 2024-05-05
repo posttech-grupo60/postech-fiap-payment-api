@@ -5,15 +5,15 @@ export interface IPayment {
   orderId: string;
   price: number;
   qrCode: string;
-  payment: boolean;
+  pay: boolean;
 }
 
 const paymentSchema = new Schema<IPayment>({
-  id: { type: String, unique: true, index: true },
-  orderId: { type: String, required: true , unique: true},
+  id: { type: String,  index: true },
+  orderId: { type: String, required: true},
   price: { type: Number, required: true },
   qrCode: { type: String, required: true },
-  payment: { type: Boolean, required: true, unique: true },
+  pay: { type: Boolean, required: true },
 });
 
 export const PaymentModel = model<IPayment>("Payment", paymentSchema);

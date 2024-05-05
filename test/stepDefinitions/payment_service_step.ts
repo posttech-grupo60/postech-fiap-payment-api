@@ -35,7 +35,7 @@ Then('Precisa existir o pagamento como payment false', async () => {
   const pay  = await paymentRepository.findByPaymentToOrderId(paymentData.orderId)
   sinon.assert.calledOnce(saveStub);
   assert.ok(pay.orderId == paymentData.orderId);
-  assert.ok(pay.payment == false);
+  assert.ok(pay.pay == false);
 });
 
 

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1714880030330" clover="3.2.0">
+  <project timestamp="1714880030330" name="All files">
+    <metrics statements="39" coveredstatements="38" conditionals="2" coveredconditionals="0" methods="12" coveredmethods="11" elements="53" coveredelements="49" complexity="0" loc="39" ncloc="39" packages="3" files="3" classes="3"/>
+    <package name="entity">
+      <metrics statements="9" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
+      <file name="payment.ts" path="C:\postech-fiap-payment-api\src\entity\payment.ts">
+        <metrics statements="9" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="14" count="3" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="20" count="3" type="stmt"/>
+        <line num="21" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="repositories.Memory">
+      <metrics statements="12" coveredstatements="12" conditionals="2" coveredconditionals="0" methods="7" coveredmethods="7"/>
+      <file name="InMemoryPaymentRepository.ts" path="C:\postech-fiap-payment-api\src\repositories\Memory\InMemoryPaymentRepository.ts">
+        <metrics statements="12" coveredstatements="12" conditionals="2" coveredconditionals="0" methods="7" coveredmethods="7"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="1" type="cond" truecount="0" falsecount="1"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="22" count="1" type="cond" truecount="0" falsecount="1"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="utils">
+      <metrics statements="18" coveredstatements="18" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="paymentUtil.ts" path="C:\postech-fiap-payment-api\src\utils\paymentUtil.ts">
+        <metrics statements="18" coveredstatements="18" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="10" count="3" type="stmt"/>
+        <line num="11" count="3" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="14" count="3" type="stmt"/>
+        <line num="15" count="3" type="stmt"/>
+        <line num="16" count="3" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="18" count="3" type="stmt"/>
+        <line num="19" count="3" type="stmt"/>
+        <line num="21" count="3" type="stmt"/>
+        <line num="26" count="3" type="stmt"/>
+        <line num="35" count="3" type="stmt"/>
+        <line num="36" count="3" type="stmt"/>
+        <line num="38" count="3" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>

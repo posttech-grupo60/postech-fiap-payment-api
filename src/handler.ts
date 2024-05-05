@@ -3,13 +3,18 @@ import Payment from "./entity/payment";
 import { PaymentUseCase } from "./useCase/paymentUseCase";
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import { connect } from "mongoose";
-const mongoUrl = "mongodb+srv://fiap-pos:yDjVkBRmkGNN6fpu@cluster-teste.bwzlfbw.mongodb.net/base_fastfood";
+const mongoUrl = process.env.MONGO_URI ?? '';
+
+(async () => {
+  await connect(mongoUrl);
+})();
 
 export const generatepayment = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
 
   try {
     if (event.body !== undefined && event.body !== null) { 
-          await connect(mongoUrl);
+          console.log(mongoUrl);
+          //await connect(mongoUrl);
     
           const paymentUseCase = new PaymentUseCase();
           const { orderId, price } = JSON.parse(event.body);
@@ -40,7 +45,7 @@ export const searchPaymentByOrderId = async (event: APIGatewayProxyEvent): Promi
 
   try {
     if (event.pathParameters !== undefined && event.pathParameters !== null) { 
-          await connect(mongoUrl);
+          console.log(mongoUrl);
 
           const { orderId } = event.pathParameters as {
             orderId: string
@@ -69,8 +74,6 @@ export const searchPaymentByOrderId = async (event: APIGatewayProxyEvent): Promi
 export const payOrderId = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
   try {
     if (event.pathParameters !== undefined && event.pathParameters !== null) { 
-          await connect(mongoUrl);
-
           const { orderId } = event.pathParameters as {
             orderId: string
           };

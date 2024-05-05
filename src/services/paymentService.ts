@@ -14,7 +14,8 @@ export default class PaymentService {
         const qrCode = await this.paymentUtil.generateQRCode(payment);
         console.log("QrCode " + qrCode);
         payment.setNewQrCode(qrCode);
-        payment.setNewId;
+        payment.setNewId();
+        console.log("Qual id ficou " + payment.id);
         return this.paymentRepository.save(payment);
     }
 

@@ -4,3 +4,7 @@ node_modules
 
 # Serverless directories
 #.serverless
+nyc_output
+.serverless
+cover
+.env

@@ -1,15 +1,13 @@
-service: lambda-autenticacao-pos
+service: payment
 
 frameworkVersion: "3"
 
 provider:
   name: aws
   runtime: nodejs16.x
-
-# you can overwrite defaults here
   stage: dev
-  # environment:
-  #   AWS_KEY: ${env:AWS_ACCESS_KEY_ID}
+  environment:
+    MONGO_URI: mongodb+srv://fiap-pos:yDjVkBRmkGNN6fpu@cluster-teste.bwzlfbw.mongodb.net/base_fastfood
   #   AWS_SECRET: ${env:AWS_SECRET_ACCESS_KEY}
   #   AWS_REGION_KEY:  ${env:AWS_REGION_KEY}
   #   COGNITO_CLIENT_ID_KEY: ${env:COGNITO_CLIENT_ID_KEY}
@@ -17,12 +15,13 @@ provider:
 package:
   individually: true  # Define package.individually como true a nível de serviço
   patterns:
-    - '!node_modules/**'  # Padrões de pacote a nível de serviço que se aplicam a todas as funções
+    - 'node_modules/**'  # Padrões de pacote a nível de serviço que se aplicam a todas as funções
 
 functions:
   generatepayment:
     handler: src/handler.generatepayment
-    role: arn:aws:iam::590183845614:role/LabRole
+    role: arn:aws:iam::114495730772:role/LabRole
+    timeout: 120 # Tempo limite de 10 segundos
     events:
       - httpApi:
           path: /generatePayment
@@ -31,7 +30,8 @@ functions:
             contentHandling: CONVERT_TO_TEXT # Esta opção é importante para garantir que o corpo da solicitação seja enviado como texto
   searchPaymentByOrderId:
     handler: src/handler.searchPaymentByOrderId
-    role: arn:aws:iam::590183845614:role/LabRole
+    role: arn:aws:iam::114495730772:role/LabRole
+    timeout: 120 # Tempo limite de 10 segundos
     events:
       - httpApi:
           path: /searchPaymentByOrderId/{orderId}
@@ -40,7 +40,8 @@ functions:
             contentHandling: CONVERT_TO_TEXT # Esta opção é importante para garantir que o corpo da solicitação seja enviado como texto
   payOrderId:
     handler: src/handler.payOrderId
-    role: arn:aws:iam::590183845614:role/LabRole
+    role: arn:aws:iam::114495730772:role/LabRole
+    timeout: 120 # Tempo limite de 10 segundos
     events:
       - httpApi:
           path: /payOrderId/{orderId}

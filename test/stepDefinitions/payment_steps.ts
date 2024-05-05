@@ -46,7 +46,7 @@ When('Devo criar um pagamento na base', async () => {
 Then('Quando buscar ele, o pagamento deve estar com o status de pagamento false', async () => {
   const payment = await paymentRepositoryMemory.findByToOrderId("6d8e9f80-0766-4fef-8430-544e9750a9c9");
   assert.notStrictEqual(payment, null);
-  assert.ok(payment.payment == false);
+  assert.ok(payment.pay == false);
 });
 
 
@@ -62,12 +62,12 @@ Given('Quando eu adicionar um novo pagamento', async () => {
 
 When('Devo colocar o pedido como pago', async () => {
   const payment = await paymentRepositoryMemory.findByToOrderId("6d8e9f80-0766-4fef-8430-544e9750a9c9");
-  payment.payment = true;
+  payment.pay = true;
   await paymentRepositoryMemory.update(payment);
 });
 
 Then('Quando buscar ele, ele precisa estar com o status de pagamento true', async () => {
   const payment = await paymentRepositoryMemory.findByToOrderId("6d8e9f80-0766-4fef-8430-544e9750a9c9");
   assert.notStrictEqual(payment, null);
-  assert.ok(payment.payment == true);
+  assert.ok(payment.pay == true);
 });

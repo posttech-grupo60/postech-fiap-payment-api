@@ -1,20 +1,21 @@
 import { IPayment } from "../repositories/MongoDB/schemas/Payment";
+import { randomUUID } from "crypto";
 
 export default class Payment {
     id?: string | null | undefined;
     orderId: string;
     price: number;
     qrCode: string | null | undefined;;
-    payment: boolean
+    pay: boolean
 
     constructor(orderId: string, price: number) {
         this.orderId = orderId;
         this.price = price; 
-        this.payment = false;
+        this.pay = false;
     }
     
     setNewId = () =>{
-        this.id = crypto.randomUUID();
+        this.id = randomUUID();
     }
     setNewQrCode = (qrCode: string) => {
         this.qrCode = qrCode;  

@@ -4,6 +4,7 @@ import { IPayment, PaymentModel } from "./schemas/Payment";
 export default class MongoDBPaymentrepository {
 
     async save(payment: Payment): Promise<Payment> {
+       console.log("Parou aqui " + payment.id);
         await new PaymentModel(payment).save();
         return payment;
     }
@@ -11,8 +12,8 @@ export default class MongoDBPaymentrepository {
     async update(orderId: string) :  Promise<Payment | null> {
         try {
           const payment = await this.findByPaymentToOrderId(orderId);
-          payment.payment = true;
-          console.log('Payment Id = ' + payment.id + " Dados = " + payment.payment) 
+          payment.pay = true;
+          console.log('Payment Id = ' + payment.id + " Dados = " + payment.pay) 
           const result = await PaymentModel.findOneAndUpdate({ id: payment.id }, payment);
           console.log("Dados " + result);
           return result ?  payment : null;
@@ -35,6 +36,6 @@ const convertModelToObject = async (iPayment: IPayment) => {
   const payment = new Payment(iPayment.orderId, iPayment.price);
   payment.id = iPayment.id;
   payment.qrCode = iPayment.qrCode;
-  payment.payment = iPayment.payment  
+  payment.pay = iPayment.pay  
   return await payment;
 }

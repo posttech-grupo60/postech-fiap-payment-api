@@ -1,1 +1,0 @@
-{"version":3,"file":"cucumber.js","sourceRoot":"","sources":["../cucumber.ts"],"names":[],"mappings":";AAAA,cAAc;AAEd,OAAO,CAAC,iCAAiC,CAAC,CAAC;AAC3C,MAAM,IAAI,GAAG,OAAO,CAAC,MAAM,CAAC,CAAC;AAE7B,MAAM,CAAC,OAAO,GAAG;IACf,OAAO,EAAE,aAAa,IAAI,CAAC,IAAI,CAAC,SAAS,EAAE,4BAA4B,CAAC,EAAE;CAC3E,CAAC"}
