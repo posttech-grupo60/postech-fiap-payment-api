@@ -1,0 +1,97 @@
+name: Deploy release for AWS and Commit to Main
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - release
+
+env:
+  _ENVIRONMENT: development
+  _REPOSITORY_NAME: github-action-nodejs-serverless
+
+jobs: 
+  TestWithBDD:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Instalar Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}  
+
+    - name: Instalar dependências
+      run: |
+        npm install
+        sudo apt-get update && sudo apt-get install lcov
+        sudo apt-get install jq
+
+    - name: Executar testes BDD e gerar relatório de cobertura
+      run: npm run bdd
+
+    - name: Ler informações de cobertura
+      run: |
+        npm install -g lcov-parse
+        lcov-parse coverage/lcov.info > cobertura.json
+
+    - name: Exibir informações de cobertura
+      run: cat cobertura.json
+
+    - name: Extrair porcentagem de cobertura
+      run: |
+        coverage=$(cat cobertura.json | jq '.[].lines.found' | paste -sd+ - | bc)
+        cobertos=$(cat cobertura.json | jq '.[].lines.hit' | paste -sd+ - | bc)
+        percentual=$(echo "scale=2; $cobertos / $coverage * 100" | bc -l)
+        echo "Porcentagem de cobertura: $percentual%"
+        pass_percent="80"
+        if (( $(echo "$percentual >= $pass_percent" | bc -l) )); then
+          echo "Cobertura de teste atingida: $percentual%"
+          exit 0
+        else
+          echo "Erro: A cobertura de teste é inferior a $pass_percent% ($percentual%)"
+          exit 1
+        fi
+
+  TestWithUnitTest:
+    runs-on: ubuntu-latest
+    needs: TestWithBDD
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Run unit tests
+        run: npm test
+
+  DeployServerless:
+    name: deploy
+    needs: TestWithUnitTest
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 16.x ]
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Npm install
+        run: npm install
+      - name: Serverless deploy
+        uses: serverless/github-action@master
+        with:
+          args: deploy
+        env:
+          LOG_LEVEL: debug
+          AWS_REGION_KEY: ${{ secrets.AWS_REGION_KEY }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
