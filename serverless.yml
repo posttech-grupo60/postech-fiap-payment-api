@@ -18,7 +18,7 @@ functions:
   generatepayment:
     handler: src/handler.generatepayment
     role: arn:aws:iam::114495730772:role/LabRole
-    timeout: 120 # Tempo limite de 10 segundos
+    timeout: 240
     events:
       - httpApi:
           path: /generatePayment
@@ -28,7 +28,7 @@ functions:
   searchPaymentByOrderId:
     handler: src/handler.searchPaymentByOrderId
     role: arn:aws:iam::114495730772:role/LabRole
-    timeout: 120 # Tempo limite de 10 segundos
+    timeout: 240 
     events:
       - httpApi:
           path: /searchPaymentByOrderId/{orderId}
@@ -38,7 +38,7 @@ functions:
   payOrderId:
     handler: src/handler.payOrderId
     role: arn:aws:iam::114495730772:role/LabRole
-    timeout: 120 # Tempo limite de 10 segundos
+    timeout: 240 
     events:
       - httpApi:
           path: /payOrderId/{orderId}
