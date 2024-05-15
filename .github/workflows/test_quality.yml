@@ -43,7 +43,7 @@ jobs:
         cobertos=$(cat cobertura.json | jq '.[].lines.hit' | paste -sd+ - | bc)
         percentual=$(echo "scale=2; $cobertos / $coverage * 100" | bc -l)
         echo "Porcentagem de cobertura: $percentual%"
-        pass_percent="80"
+        pass_percent="100"
         if (( $(echo "$percentual >= $pass_percent" | bc -l) )); then
           echo "Cobertura de teste atingida: $percentual%"
           exit 0
