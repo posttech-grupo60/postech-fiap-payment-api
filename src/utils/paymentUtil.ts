@@ -17,7 +17,7 @@ export default class PaymentUtil {
         payload += '62070503'; // Indica que é uma transação PIX
         payload += '6304' + pixPayload.transactionId; // Identificador da transação
         payload += '62' + pixPayload.description.length + pixPayload.description; // Descrição do pagamento
-    
+        console.log('Gerando o pix de pagamento');
         return payload;
     }
     
