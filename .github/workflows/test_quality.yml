@@ -54,7 +54,7 @@ jobs:
 
   TestWithUnitTest:
     runs-on: ubuntu-latest
-    needs: testBdd
+    needs: TestWithBDD
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
