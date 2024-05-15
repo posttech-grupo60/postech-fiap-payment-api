@@ -7,10 +7,7 @@ provider:
   runtime: nodejs16.x
   stage: dev
   environment:
-    MONGO_URI: mongodb+srv://fiap-pos:yDjVkBRmkGNN6fpu@cluster-teste.bwzlfbw.mongodb.net/base_fastfood
-  #   AWS_SECRET: ${env:AWS_SECRET_ACCESS_KEY}
-  #   AWS_REGION_KEY:  ${env:AWS_REGION_KEY}
-  #   COGNITO_CLIENT_ID_KEY: ${env:COGNITO_CLIENT_ID_KEY}
+    MONGO_URI: ${env:MONGO_DB_URI}
     
 package:
   individually: true  # Define package.individually como true a nível de serviço

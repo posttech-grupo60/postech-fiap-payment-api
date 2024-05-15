@@ -1,15 +1,15 @@
-name: Testes de BDD e Cobertura
+name: Testes de BDD e Cobertura de Testes Unitários
 
 on:
   push:
     branches:
-      - main
+      - develop
   pull_request:
     branches:
-      - main
+      - develop
 
 jobs:
-  testBdd:
+  TestWithBDD:
     runs-on: ubuntu-latest
 
     steps:
@@ -52,7 +52,7 @@ jobs:
           exit 1
         fi
 
-  unit:
+  TestWithUnitTest:
     runs-on: ubuntu-latest
     needs: testBdd
     steps:

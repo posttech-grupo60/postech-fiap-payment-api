@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout do código
+      uses: actions/checkout@v2
+
+    - name: Verificar branch de origem e destino
+      run: |
+        if [ "${{ github.event.pull_request.head.ref }}" != "release" ] && [ "${{ github.event.pull_request.base.ref }}" == "main" ]; then
+          echo "Pull requests só podem ser mesclados na branch 'main' vindo da branch 'release'."
+          exit 1
+        else
+            echo "Condições de mesclagem atendidas."
+            exit 0
+        fi
+
+    - name: Fechar Pull Request
+      if: failure()
+      run: gh pr close "${{ github.event.pull_request.number }}"
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Configuração da variável de ambiente com o token de acesso do GitHub
