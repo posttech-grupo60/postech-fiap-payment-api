@@ -1,4 +1,4 @@
-service: payment
+service: payment-fiap-pos
 
 frameworkVersion: "3"
 
@@ -7,10 +7,10 @@ provider:
   runtime: nodejs16.x
   stage: dev
   environment:
-    MONGO_URI: ${env:MONGO_DB_URI}
+    MONGO_URI: mongodb+srv://fiap-pos:MpQc5Hhd9JTPTKjG@cluster-teste.bwzlfbw.mongodb.net/base_fastfood
     
 package:
-  individually: true  # Define package.individually como true a nível de serviço
+  individually: true # Define package.individually como true a nível de serviço
   patterns:
     - 'node_modules/**'  # Padrões de pacote a nível de serviço que se aplicam a todas as funções
 
@@ -18,7 +18,7 @@ functions:
   generatepayment:
     handler: src/handler.generatepayment
     role: arn:aws:iam::114495730772:role/LabRole
-    timeout: 120 # Tempo limite de 10 segundos
+    timeout: 240
     events:
       - httpApi:
           path: /generatePayment
@@ -28,7 +28,7 @@ functions:
   searchPaymentByOrderId:
     handler: src/handler.searchPaymentByOrderId
     role: arn:aws:iam::114495730772:role/LabRole
-    timeout: 120 # Tempo limite de 10 segundos
+    timeout: 240 
     events:
       - httpApi:
           path: /searchPaymentByOrderId/{orderId}
@@ -38,7 +38,7 @@ functions:
   payOrderId:
     handler: src/handler.payOrderId
     role: arn:aws:iam::114495730772:role/LabRole
-    timeout: 120 # Tempo limite de 10 segundos
+    timeout: 240 
     events:
       - httpApi:
           path: /payOrderId/{orderId}
