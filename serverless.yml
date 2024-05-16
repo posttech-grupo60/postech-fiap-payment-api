@@ -1,4 +1,4 @@
-service: payment
+service: payment-fiap
 
 frameworkVersion: "3"
 
@@ -10,7 +10,6 @@ provider:
     MONGO_URI: ${env:MONGO_DB_URI}
     
 package:
-  individually: true  # Define package.individually como true a nível de serviço
   patterns:
     - 'node_modules/**'  # Padrões de pacote a nível de serviço que se aplicam a todas as funções
 
