@@ -7,7 +7,7 @@ provider:
   runtime: nodejs16.x
   stage: dev
   environment:
-    MONGO_URI: mongodb+srv://fiap-pos:MpQc5Hhd9JTPTKjG@cluster-teste.bwzlfbw.mongodb.net/base_fastfood
+    MONGO_URI: ${env:MONGO_URI}
     
 package:
   individually: true # Define package.individually como true a nível de serviço
