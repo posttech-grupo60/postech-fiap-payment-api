@@ -7,7 +7,7 @@ Link do vídeo detalhando a etapa Pagamento pode ser visto <a href="https://www.
 Link do vídeo detalhando a etapa Produção pode ser visto <a href="https://www.youtube.com/watch?v=AzamHlOm1KM" target="_blank">aqui</a> <br>
 
 ### Outros repositórios da fase:
-<b> App Pedido (Node): </b> ## <br>
+<b> App Pedido (Node): </b>  https://github.com/posttech-grupo60/postech-fiap-order-api <br>
 <b> App Produção (Java): </b> https://github.com/posttech-grupo60/api-producao <br>
 <b> Infra Etapa Produção com Terraform | Kubernetes | AWS (EKS): </b> https://github.com/grunbruno/tech-fase4-tf-k8s <br>
 
