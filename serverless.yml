@@ -7,6 +7,7 @@ provider:
   runtime: nodejs16.x
   stage: dev
   environment:
+<<<<<<< HEAD
     MONGO_URI: mongodb+srv://fiap-pos:MpQc5Hhd9JTPTKjG@cluster-teste.bwzlfbw.mongodb.net/base_fastfood
   iam:
     role:
@@ -16,6 +17,9 @@ provider:
             - sqs:ReceiveMessage
           Resource:
             - Fn::GetAtt: [criar-pagamento-queue, Arn]
+=======
+    MONGO_URI: ${env:MONGO_URI}
+>>>>>>> 60320ddfff17a28ad605de2c61666d4a0e6fa8f4
     
 package:
   individually: true # Define package.individually como true a nível de serviço
