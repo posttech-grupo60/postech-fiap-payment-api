@@ -12,7 +12,7 @@ export default class MongoDBPaymentrepository {
     async update(orderId: string) :  Promise<Payment | null> {
         try {
           const payment = await this.findByPaymentToOrderId(orderId);
-          payment.pay = true;
+          payment.pay = payment.price > 30 ? false : true;
           console.log('Payment Id = ' + payment.id + " Dados = " + payment.pay) 
           const result = await PaymentModel.findOneAndUpdate({ id: payment.id }, payment);
           console.log("Dados " + result);
