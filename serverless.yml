@@ -8,6 +8,14 @@ provider:
   stage: dev
   environment:
     MONGO_URI: mongodb+srv://fiap-pos:MpQc5Hhd9JTPTKjG@cluster-teste.bwzlfbw.mongodb.net/base_fastfood
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - sqs:ReceiveMessage
+          Resource:
+            - Fn::GetAtt: [criar-pagamento-queue, Arn]
     
 package:
   individually: true # Define package.individually como true a nível de serviço
@@ -41,12 +49,28 @@ functions:
     timeout: 240 
     events:
       - httpApi:
-          path: /payOrderId/{orderId}
+          path: /pay/{orderId}
           method: put
           payload:
-            contentHandling: CONVERT_TO_TEXT # Esta opção é importante para garantir que o corpo da solicitação seja enviado como texto
-            
+            contentHandling: CONVERT_TO_TEXT # Esta opção é importante para garantir que o corpo da solicitação seja enviado como texto  
+  processOrder:
+    handler: src/handler.processOrder
+    events:
+      - sqs:
+          arn:
+            Fn::GetAtt: [criar-pagamento-queue, Arn]
+          batchSize: 1
+
+resources:
+  Resources:
+    criar-pagamento-queue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: criar-pagamento-queue
+
 plugins:
   - serverless-offline
   - serverless-plugin-typescript
+
+  
   
