@@ -1,6 +1,6 @@
 -----
 # Tech Challenge Pos Tech SOAT - Fase 5
-## App Produção (Java)
+## App Pagamentos (NodeJS)
 ### Saga escolhida: Coreografada -> motivo: Processo simples, sem muita complexidade e de fácil gerenciamento
 
 Links dos vídeos detalhando a arquitetura e a SAGA: <br>
